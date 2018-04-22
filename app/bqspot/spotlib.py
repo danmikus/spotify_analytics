@@ -1,3 +1,4 @@
+import json
 import spotipy
 import spotipy.oauth2 as oauth2
 
@@ -34,8 +35,12 @@ class artist(object):
     def num_top_tracks(self):
         return len(self.top_tracks)
 
-def create_spotify_client():
-    credentials = oauth2.SpotifyClientCredentials(client_id='67012152abf74f368dd6668a9ee9946e',client_secret='2ca324b8c1d14be5af1e8175d2d7961e')
+def create_spotify_client(file_path):
+
+    with open(file_path) as f_in:
+       creds = json.load(f_in)
+
+    credentials = oauth2.SpotifyClientCredentials(client_id=creds['client_id'], client_secret=creds['client_secret'])
     token = credentials.get_access_token()
     spotify = spotipy.Spotify(auth=token)
 
