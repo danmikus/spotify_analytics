@@ -1,0 +1,4 @@
+cron:
+- description: "daily spotify job"
+  url: /app/spotify_data.py
+  schedule: every 24 hours
