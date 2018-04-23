@@ -94,9 +94,9 @@ def bq_creation(creds_path, data):
         bigquery.SchemaField('name', 'STRING', mode='REQUIRED'),
         bigquery.SchemaField('name_id', 'STRING', mode='REQUIRED'),
         bigquery.SchemaField('popularity', 'FLOAT', mode='NULLABLE'),
-        bigquery.SchemaField('duration_sec', 'INTEGER', mode='NULLABLE'),
         bigquery.SchemaField('explicit', 'BOOLEAN', mode='NULLABLE'),
-        bigquery.SchemaField('preview', 'STRING', mode='NULLABLE')
+        bigquery.SchemaField('preview', 'STRING', mode='NULLABLE'),
+        bigquery.SchemaField('duration_sec', 'INTEGER', mode='NULLABLE')
     ]
 
     features_schema = [
