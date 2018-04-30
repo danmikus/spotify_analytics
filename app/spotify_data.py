@@ -15,7 +15,6 @@ def spotify_data(path, user, playlist):
     top_artist_tracks_table_data = []
     related_artists_table_data = []
 
-
     for track in top_tracks:
         temp_tracks = (track.artist,
                        track.artist_id,
@@ -28,20 +27,21 @@ def spotify_data(path, user, playlist):
         tracks_table_data.append(temp_tracks)
 
     for features in top_tracks:
-        temp_features = (features.features['id'],
-                         features.features['danceability'],
-                         features.features['energy'],
-                         features.features['key'],
-                         features.features['loudness'],
-                         features.features['mode'],
-                         features.features['speechiness'],
-                         features.features['acousticness'],
-                         features.features['instrumentalness'],
-                         features.features['liveness'],
-                         features.features['valence'],
-                         features.features['tempo'])
+        if features.features != None:
+            temp_features = (features.features['id'],
+                             features.features['danceability'],
+                             features.features['energy'],
+                             features.features['key'],
+                             features.features['loudness'],
+                             features.features['mode'],
+                             features.features['speechiness'],
+                             features.features['acousticness'],
+                             features.features['instrumentalness'],
+                             features.features['liveness'],
+                             features.features['valence'],
+                             features.features['tempo'])
 
-        features_table_data.append(temp_features)
+            features_table_data.append(temp_features)
 
     for artist in artist_information:
         temp_artists = (artist.artist,
@@ -83,10 +83,8 @@ def spotify_data(path, user, playlist):
 
     return spot_data
 
-def bq_creation(creds_path, data):
+def bq_creation(creds_path, data, dataset_name):
     bqclient = bqlib.create_bq_client(creds_path)
-
-    dataset_name = "spotify_dataset"
 
     tracks_schema = [
         bigquery.SchemaField('artist', 'STRING', mode='REQUIRED'),
@@ -152,9 +150,11 @@ def bq_creation(creds_path, data):
 if __name__ == "__main__":
 
     user = 'spotify'
-    user_playlist = '37i9dQZF1DXcBWIGoYBM5M'
-    spot_path = 'bqspot/credentials/spot.json'
-    bq_path = 'bqspot/credentials/bq_key.json'
+    user_playlists = [['37i9dQZF1DX0XUsuxWHRQd', 'RapCaviar'], ['37i9dQZF1DXcBWIGoYBM5M', 'todays_top_hits'], ['37i9dQZF1DXcF6B6QPhFDv', 'RockThis']]
+    spot_path = 'app/bqspot/credentials/spot.json'
+    bq_path = 'app/bqspot/credentials/bq_key.json'
 
-    data = spotify_data(spot_path, user, user_playlist)
-    bq_creation(bq_path, data)
+    for pl in user_playlists:
+
+        data = spotify_data(spot_path, user, pl[0])
+        bq_creation(bq_path, data, pl[1])
