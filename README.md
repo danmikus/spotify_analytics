@@ -89,7 +89,7 @@ fig (2)
 We were able to glean some interesting insights from our data. One of the most interesting is how popular Drake is. He is far ahead of any other artist in terms of followers and popularity score. Also interesting is that despite his popularity, he is ties for two with J. Cole for number of songs on the countdowns, behind Post Malone. It was however, not surprising to us that a clear majority of the most popular songs in America are pop songs. Of course, we were also able to get features of the songs, but these seemed to only be useful when comparing against other songs.
 
 ## Lessons Learned
-1. **Data Architecture Planning** - Planning for how you will realistically query the data is important up front. Because we didn't plan ahed enough on this, we had each set of tables broken out by playlists (e.g., three artist tables, three genre tables). We could still use this, but it could have been designed better.
+1. **Data Architecture Planning** - Planning for how you will realistically query the data is important up front. Because we didn't plan ahead enough on this, we had each set of tables broken out by playlists (e.g., three artist tables, three genre tables). We could still use this, but it could have been designed better.
 
 2. **Spend more time structuring the code** - We learned that it is much easier to make an architecture of how the code is going to work upfront, otherwise you will be correcting code more than writing new code.
 
