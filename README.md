@@ -68,7 +68,7 @@ fig (2)
 The queries we wrote were in support of answering some of our ultimate business questions. Since we had three different playlists, we had to union the data from each table into our final queries. The queries we wrote are:
 
 * The artists with the most songs across the playlists
-* The number of songs were explicit from each playlist
+* The number of songs that were explicit from each playlist
 * The popularity of the artists on the playlists
 * The features of the songs on the playlists
 
